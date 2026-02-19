@@ -258,100 +258,116 @@
       letter-spacing: -0.02em;
     }
 
-    .contrib-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    .org-section {
+      margin-bottom: 1rem;
     }
 
-    .contrib {
+    .org-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+      padding: 0 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .repo-list {
       display: flex;
-      align-items: flex-start;
-      gap: 0.85rem;
-      padding: 0.9rem 1rem;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .repo-item {
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.07);
-      text-decoration: none;
-      transition: all 0.25s ease;
       backdrop-filter: blur(10px);
+      overflow: hidden;
     }
 
-    .contrib:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.16);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .contrib-icon {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+    .repo-item summary {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-top: 2px;
+      gap: 0.7rem;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      list-style: none;
+      transition: background 0.2s;
     }
 
-    .contrib-icon svg {
-      width: 18px;
-      height: 18px;
+    .repo-item summary::-webkit-details-marker { display: none; }
+
+    .repo-item summary:hover {
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    .contrib-icon.merged {
-      background: rgba(139, 92, 246, 0.15);
-      color: #a78bfa;
+    .repo-item[open] summary {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .contrib-icon.open {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
+    .repo-chevron {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: #555;
+      transition: transform 0.2s;
     }
 
-    .contrib-body {
+    .repo-item[open] .repo-chevron {
+      transform: rotate(90deg);
+    }
+
+    .repo-name {
       flex: 1;
-      min-width: 0;
-    }
-
-    .contrib-repo {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #6366f1;
-      margin-bottom: 0.2rem;
-    }
-
-    .contrib-title {
       font-size: 0.85rem;
       font-weight: 500;
       color: #ccc;
-      line-height: 1.4;
     }
 
-    .contrib:hover .contrib-title {
+    .repo-item summary:hover .repo-name {
       color: #fff;
     }
 
-    .contrib-badge {
-      flex-shrink: 0;
-      font-size: 0.65rem;
+    .repo-count {
+      font-size: 0.7rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.2rem 0.5rem;
+      color: #888;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    .pr-list {
+      padding: 0.4rem 0.5rem;
+    }
+
+    .pr-item {
+      display: block;
+      padding: 0.45rem 0.6rem;
       border-radius: 6px;
-      margin-top: 3px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #999;
+      transition: all 0.15s;
+      line-height: 1.4;
     }
 
-    .contrib-badge.merged {
-      background: rgba(139, 92, 246, 0.15);
+    .pr-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ddd;
+    }
+
+    .pr-item .pr-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
       color: #a78bfa;
-    }
-
-    .contrib-badge.open {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
+      background: rgba(139, 92, 246, 0.15);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      margin-right: 0.4rem;
+      vertical-align: middle;
     }
 
     /* Responsive */
@@ -418,64 +434,279 @@
 
       <div class="contributions">
         <h2>Open Source Contributions</h2>
-        <div class="contrib-list">
 
-          <a class="contrib" href="https://github.com/GoogleCloudPlatform/gke-autoneg-controller/pull/140" target="_blank" rel="noopener">
-            <div class="contrib-icon merged">
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
-            </div>
-            <div class="contrib-body">
-              <div class="contrib-repo">GoogleCloudPlatform/gke-autoneg-controller</div>
-              <div class="contrib-title">fix: deregister NEGs on removing annotation</div>
-            </div>
-            <span class="contrib-badge merged">Merged</span>
-          </a>
+        <!-- External OSS -->
+        <div class="org-section">
+          <div class="org-label">External</div>
+          <div class="repo-list">
 
-          <a class="contrib" href="https://github.com/DataDog/dd-trace-java/pull/6233" target="_blank" rel="noopener">
-            <div class="contrib-icon merged">
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
-            </div>
-            <div class="contrib-body">
-              <div class="contrib-repo">DataDog/dd-trace-java</div>
-              <div class="contrib-title">Add Vert.x 4 Redis client instrumentation</div>
-            </div>
-            <span class="contrib-badge merged">Merged</span>
-          </a>
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">GoogleCloudPlatform/gke-autoneg-controller</span>
+                <span class="repo-count">1 PR</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/GoogleCloudPlatform/gke-autoneg-controller/pull/140" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: deregister NEGs on removing annotation</a>
+              </div>
+            </details>
 
-          <a class="contrib" href="https://github.com/DataDog/dd-trace-java/pull/5717" target="_blank" rel="noopener">
-            <div class="contrib-icon merged">
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
-            </div>
-            <div class="contrib-body">
-              <div class="contrib-repo">DataDog/dd-trace-java</div>
-              <div class="contrib-title">Add Vert.x 4 MySQL client instrumentation</div>
-            </div>
-            <span class="contrib-badge merged">Merged</span>
-          </a>
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">DataDog/dd-trace-java</span>
+                <span class="repo-count">2 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/DataDog/dd-trace-java/pull/6233" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Add Vert.x 4 Redis client instrumentation</a>
+                <a class="pr-item" href="https://github.com/DataDog/dd-trace-java/pull/5717" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Add Vert.x 4 MySQL client instrumentation</a>
+              </div>
+            </details>
 
-          <a class="contrib" href="https://github.com/vert-x3/vertx-awesome/pull/187" target="_blank" rel="noopener">
-            <div class="contrib-icon merged">
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
-            </div>
-            <div class="contrib-body">
-              <div class="contrib-repo">vert-x3/vertx-awesome</div>
-              <div class="contrib-title">chore: add vertx-rest repository</div>
-            </div>
-            <span class="contrib-badge merged">Merged</span>
-          </a>
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">vert-x3/vertx-awesome</span>
+                <span class="repo-count">1 PR</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/vert-x3/vertx-awesome/pull/187" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add vertx-rest repository</a>
+              </div>
+            </details>
 
-          <a class="contrib" href="https://github.com/qos-ch/logback/pull/519" target="_blank" rel="noopener">
-            <div class="contrib-icon open">
-              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
-            </div>
-            <div class="contrib-body">
-              <div class="contrib-repo">qos-ch/logback</div>
-              <div class="contrib-title">LOGBACK-1559: improve subAppend method</div>
-            </div>
-            <span class="contrib-badge open">Open</span>
-          </a>
-
+          </div>
         </div>
+
+        <!-- dream11 -->
+        <div class="org-section">
+          <div class="org-label">dream11</div>
+          <div class="repo-list">
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">dream11/odin</span>
+                <span class="repo-count">37 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/352" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: remove unused code</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/328" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add plaintext support</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/267" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: list component type</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/226" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: grpc connection for insecure</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/221" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: cgo disabled when building go binaries</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/218" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: make options optional</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/212" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: update go version</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/202" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Cobra Setup</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/196" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add release action</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/184" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Development to main</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/183" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: type env name in strict type operations</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/155" target="_blank" rel="noopener"><span class="pr-badge">merged</span>DX-733: labels in list service output</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/131" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Feat/component flavours</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/129" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Release 1.2.0-beta</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/128" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: bump version to 1.2.0-beta</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/121" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Release odin 1.2.0-alpha</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/118" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: warning when ignoring provisioning files</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/90" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: remove platform flag in service, service set deploy</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/86" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: use access key, secret access key from env variable</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/83" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add d11-config-store-namespace parameter in deploy service</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/77" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: help section for create service</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/62" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Fix service list help</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/61" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: show overall service status in env service status</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/60" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: show env state in env status</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/56" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: improve next command message for service create</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/42" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: improve error message for empty params</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/39" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Refactor service describe</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/38" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: component type synopsis message</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/32" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: output commands to run next</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/31" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Component and Component Type Command</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/30" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: use *bool instead of bool in struct</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/29" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: service delete command</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/28" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: service label command</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/27" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Status command for service status</a>
+                <a class="pr-item" href="https://github.com/dream11/odin/pull/20" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: service rebuild, describe, list, schema changes</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">dream11/helm-charts</span>
+                <span class="repo-count">6 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream11/helm-charts/pull/6" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Voltdb helm chart</a>
+                <a class="pr-item" href="https://github.com/dream11/helm-charts/pull/4" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Fix Release Action</a>
+                <a class="pr-item" href="https://github.com/dream11/helm-charts/pull/3" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add release workflow</a>
+                <a class="pr-item" href="https://github.com/dream11/helm-charts/pull/2" target="_blank" rel="noopener"><span class="pr-badge">merged</span>README.md and CONTRIBUTING.md</a>
+                <a class="pr-item" href="https://github.com/dream11/helm-charts/pull/1" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Aerospike helm chart</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">dream11/homebrew-tools</span>
+                <span class="repo-count">4 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream11/homebrew-tools/pull/18" target="_blank" rel="noopener"><span class="pr-badge">merged</span>Release odin@1.3.1-beta</a>
+                <a class="pr-item" href="https://github.com/dream11/homebrew-tools/pull/7" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: release odin 1.2.0-beta</a>
+                <a class="pr-item" href="https://github.com/dream11/homebrew-tools/pull/6" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: correct class name in odin@1.2.0-alpha.rb</a>
+                <a class="pr-item" href="https://github.com/dream11/homebrew-tools/pull/5" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: release odin 1.2.0-alpha</a>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        <!-- dream-horizon-org -->
+        <div class="org-section">
+          <div class="org-label">dream-horizon-org</div>
+          <div class="repo-list">
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-components</span>
+                <span class="repo-count">14 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/56" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: index.yaml and component readme</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/55" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/53" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow only from default branch</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/47" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add issue template</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/46" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: rename local tag to local-dev</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/44" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: prefix env variables with ODIN_</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/41" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: component metadata validations in application</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/39" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: application:local_k8s ignore helm release not found</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/33" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: update readme</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/32" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: bump dsl version</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/31" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: application download artifact jq query</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/30" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: application .templateignore</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/29" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add license file</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-components/pull/27" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: component release tar</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-deployer</span>
+                <span class="repo-count">9 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/15" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: rewrite using new environment schema</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/12" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add odin discovery data</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/8" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: preserve operation config during enrichment</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/6" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: bump vertx grpc extension</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/5" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: pass keys in release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/3" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/2" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add core code</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-deployer/pull/1" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add pre commit and pr title workflow</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-account-manager</span>
+                <span class="repo-count">7 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/13" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: dream11 trace logs</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/10" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: bump vertx grpc extension</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/7" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: bump version script path</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/6" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/5" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/3" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-account-manager/pull/2" target="_blank" rel="noopener"><span class="pr-badge">merged</span>feat: add core code</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-orchestrator</span>
+                <span class="repo-count">5 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-orchestrator/pull/28" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: use if not present pull policy</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-orchestrator/pull/27" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add s3 static creds</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-orchestrator/pull/25" target="_blank" rel="noopener"><span class="pr-badge">merged</span>docs: add README</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-orchestrator/pull/24" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow checkout</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-orchestrator/pull/23" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: use odinhq/runner image</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-cli</span>
+                <span class="repo-count">5 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-cli/pull/12" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: use action-gh-release</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-cli/pull/11" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: skip release name and body during update</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-cli/pull/10" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: allow updates in release</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-cli/pull/9" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release workflow</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-cli/pull/6" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: remove provisioning-type</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin</span>
+                <span class="repo-count">4 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin/pull/15" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: update THE_LITTLE_ODIN-ER.md</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin/pull/9" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: update chart readme</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin/pull/8" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: update install.sh</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin/pull/7" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: release chart workflow</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-discovery</span>
+                <span class="repo-count">3 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-discovery/pull/9" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: dream11 trace logs</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-discovery/pull/3" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: clean pom</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-discovery/pull/1" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add pre commit and pr title workflow</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">odin-component-interface</span>
+                <span class="repo-count">2 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-component-interface/pull/22" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: s3 static creds</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/odin-component-interface/pull/19" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: add license file</a>
+              </div>
+            </details>
+
+            <details class="repo-item">
+              <summary>
+                <svg class="repo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                <span class="repo-name">vertx-grpc-extension</span>
+                <span class="repo-count">2 PRs</span>
+              </summary>
+              <div class="pr-list">
+                <a class="pr-item" href="https://github.com/dream-horizon-org/vertx-grpc-extension/pull/12" target="_blank" rel="noopener"><span class="pr-badge">merged</span>chore: rename github org</a>
+                <a class="pr-item" href="https://github.com/dream-horizon-org/vertx-grpc-extension/pull/11" target="_blank" rel="noopener"><span class="pr-badge">merged</span>fix: reflection service</a>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
       </div>
 
   </div>
