@@ -11,7 +11,6 @@ from urllib.request import Request, urlopen
 import json
 
 GITHUB_USERNAME = "akshaypatidar1999"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 INDEX_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "index.html")
 
 # Repos to exclude from the contributions list
@@ -68,24 +67,12 @@ def github_request(url, headers):
     sys.exit(1)
 
 
-def is_repo_public(repo_full_name):
-    """Check if a repo is public by making an unauthenticated request."""
-    req = Request(
-        f"https://api.github.com/repos/{repo_full_name}",
-        headers={"Accept": "application/vnd.github+json"},
-    )
-    try:
-        with urlopen(req) as resp:
-            return True
-    except HTTPError:
-        return False
-
-
 def fetch_merged_prs():
-    """Fetch all merged PRs authored by the user via GitHub Search API."""
+    """Fetch all merged PRs authored by the user via unauthenticated GitHub Search API.
+
+    Using unauthenticated requests ensures only public repo PRs are returned.
+    """
     headers = {"Accept": "application/vnd.github+json"}
-    if GITHUB_TOKEN:
-        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
     all_prs = []
     page = 1
@@ -124,16 +111,6 @@ def fetch_merged_prs():
         if page * per_page >= total_count or page * per_page >= 1000:
             break
         page += 1
-
-    # Filter out private repos
-    repo_visibility = {}
-    for repo in set(pr["repo"] for pr in all_prs):
-        if repo not in repo_visibility:
-            repo_visibility[repo] = is_repo_public(repo)
-            if not repo_visibility[repo]:
-                print(f"Skipping private repo: {repo}")
-
-    all_prs = [pr for pr in all_prs if repo_visibility[pr["repo"]]]
 
     repos = set(pr["repo"] for pr in all_prs)
     print(f"Fetched {len(all_prs)} merged PRs across {len(repos)} repos")
