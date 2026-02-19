@@ -16,7 +16,7 @@
       background: #050505;
       color: #e0e0e0;
       min-height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     /* Animated gradient orbs */
@@ -82,9 +82,11 @@
       z-index: 1;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem;
+      gap: 3rem;
     }
 
     .card {
@@ -240,10 +242,123 @@
       animation: fadeUp 0.6s ease-out both;
     }
 
+    /* Contributions */
+    .contributions {
+      max-width: 540px;
+      width: 100%;
+      animation: fadeUp 0.8s ease-out 0.4s both;
+    }
+
+    .contributions h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contrib-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .contrib {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .contrib:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .contrib-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .contrib-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .contrib-icon.merged {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+    }
+
+    .contrib-icon.open {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+    }
+
+    .contrib-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contrib-repo {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #6366f1;
+      margin-bottom: 0.2rem;
+    }
+
+    .contrib-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    .contrib:hover .contrib-title {
+      color: #fff;
+    }
+
+    .contrib-badge {
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-top: 3px;
+    }
+
+    .contrib-badge.merged {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+    }
+
+    .contrib-badge.open {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+    }
+
     /* Responsive */
     @media (max-width: 480px) {
       h1 { font-size: 1.7rem; }
       .avatar { width: 110px; height: 110px; }
+      .contrib { padding: 0.75rem; }
     }
   </style>
 </head>
@@ -300,6 +415,69 @@
       </div>
 
     </div>
+
+      <div class="contributions">
+        <h2>Open Source Contributions</h2>
+        <div class="contrib-list">
+
+          <a class="contrib" href="https://github.com/GoogleCloudPlatform/gke-autoneg-controller/pull/140" target="_blank" rel="noopener">
+            <div class="contrib-icon merged">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+            </div>
+            <div class="contrib-body">
+              <div class="contrib-repo">GoogleCloudPlatform/gke-autoneg-controller</div>
+              <div class="contrib-title">fix: deregister NEGs on removing annotation</div>
+            </div>
+            <span class="contrib-badge merged">Merged</span>
+          </a>
+
+          <a class="contrib" href="https://github.com/DataDog/dd-trace-java/pull/6233" target="_blank" rel="noopener">
+            <div class="contrib-icon merged">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+            </div>
+            <div class="contrib-body">
+              <div class="contrib-repo">DataDog/dd-trace-java</div>
+              <div class="contrib-title">Add Vert.x 4 Redis client instrumentation</div>
+            </div>
+            <span class="contrib-badge merged">Merged</span>
+          </a>
+
+          <a class="contrib" href="https://github.com/DataDog/dd-trace-java/pull/5717" target="_blank" rel="noopener">
+            <div class="contrib-icon merged">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+            </div>
+            <div class="contrib-body">
+              <div class="contrib-repo">DataDog/dd-trace-java</div>
+              <div class="contrib-title">Add Vert.x 4 MySQL client instrumentation</div>
+            </div>
+            <span class="contrib-badge merged">Merged</span>
+          </a>
+
+          <a class="contrib" href="https://github.com/vert-x3/vertx-awesome/pull/187" target="_blank" rel="noopener">
+            <div class="contrib-icon merged">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+            </div>
+            <div class="contrib-body">
+              <div class="contrib-repo">vert-x3/vertx-awesome</div>
+              <div class="contrib-title">chore: add vertx-rest repository</div>
+            </div>
+            <span class="contrib-badge merged">Merged</span>
+          </a>
+
+          <a class="contrib" href="https://github.com/qos-ch/logback/pull/519" target="_blank" rel="noopener">
+            <div class="contrib-icon open">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218zM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8-9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM4.25 4a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+            </div>
+            <div class="contrib-body">
+              <div class="contrib-repo">qos-ch/logback</div>
+              <div class="contrib-title">LOGBACK-1559: improve subAppend method</div>
+            </div>
+            <span class="contrib-badge open">Open</span>
+          </a>
+
+        </div>
+      </div>
+
   </div>
 
 </body>
