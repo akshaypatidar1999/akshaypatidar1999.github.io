@@ -18,8 +18,6 @@ INDEX_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 EXCLUDED_REPOS = {
     "dream11/odin",
     "dream11/homebrew-tools",
-    "aavaz-ai/inferencing-pipeline-defs",
-    "aavaz-ai/backend-monorepo",
 }
 
 START_MARKER = "<!-- BEGIN CONTRIBUTIONS -->"
@@ -37,13 +35,13 @@ CATEGORIES = [
         "name": "Odin",
         "link_text": "dream-horizon-org.github.io/odin",
         "link_url": "https://dream-horizon-org.github.io/odin/",
-        "match": lambda repo: repo.startswith("dream-horizon-org/odin"),
+        "match": lambda repo: "odin" in repo,
     },
     {
         "name": "Vert.x",
         "link_text": "vertx.io",
         "link_url": "https://vertx.io/",
-        "match": lambda repo: repo.startswith("dream-horizon-org/vertx-"),
+        "match": lambda repo: "vertx" in repo,
     },
 ]
 
@@ -58,7 +56,7 @@ def github_request(url, headers):
             with urlopen(req) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except HTTPError as e:
-            if e.code == 403:
+            if e.code in (403, 429):
                 retry_after = int(e.headers.get("Retry-After", "60"))
                 print(f"Rate limited. Waiting {retry_after}s...")
                 time.sleep(retry_after)
@@ -68,6 +66,19 @@ def github_request(url, headers):
             sys.exit(1)
     print("Error: Exceeded retry attempts")
     sys.exit(1)
+
+
+def is_repo_public(repo_full_name):
+    """Check if a repo is public by making an unauthenticated request."""
+    req = Request(
+        f"https://api.github.com/repos/{repo_full_name}",
+        headers={"Accept": "application/vnd.github+json"},
+    )
+    try:
+        with urlopen(req) as resp:
+            return True
+    except HTTPError:
+        return False
 
 
 def fetch_merged_prs():
@@ -113,6 +124,16 @@ def fetch_merged_prs():
         if page * per_page >= total_count or page * per_page >= 1000:
             break
         page += 1
+
+    # Filter out private repos
+    repo_visibility = {}
+    for repo in set(pr["repo"] for pr in all_prs):
+        if repo not in repo_visibility:
+            repo_visibility[repo] = is_repo_public(repo)
+            if not repo_visibility[repo]:
+                print(f"Skipping private repo: {repo}")
+
+    all_prs = [pr for pr in all_prs if repo_visibility[pr["repo"]]]
 
     repos = set(pr["repo"] for pr in all_prs)
     print(f"Fetched {len(all_prs)} merged PRs across {len(repos)} repos")
